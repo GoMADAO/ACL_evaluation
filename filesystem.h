@@ -15,8 +15,6 @@
 #include <string>
 #include "files.h"
 #include "util.h"
-
-
 #include <iostream>
 
 /*
@@ -31,22 +29,19 @@ public:
   ACLFile *root;
   FileSystem();
   ~FileSystem();
-  /*    
+  /*
       user definition section:
    */
   //  initial filesystem users and groups
-  void addUserGroup(std::vector<std::string>* user_group);
+  void addUserGroup(std::vector<std::string> *user_group);
   //  initial filesystem file associated with its permission
-  void addACLFile(std::vector<std::string>* user_group, std::string file_path);
-  
-  
+  void addACLFile(std::vector<std::string> *user_group, std::string file_path);
+
   /*
       print functions used to debug
    */
   void showUserGroup();
   void showFilePermission();
-  
-  
 };
 
 #endif /* defined(__ACL_evaluation__filesystem__) */

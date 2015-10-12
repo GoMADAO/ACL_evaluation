@@ -1,0 +1,149 @@
+gmf.man /home/gmf
+gmf.newyork
+yuan.woman /home/gmf
+yuan.newyork /home/feng
+yuan.woman
+hao.man /home/hao
+gmf.man /home/gmf/file
+.
+READ gmf.man /home/gmf
+READ gmf.m /home/gmf
+READ gmf.man /home/gmf/file
+WRITE yuan,w== /home/gmf
+WRITE yuan.newyork /home/feng
+WRITE yuan.woman /home/hao
+WRITE yuan.woman /home/hao
+WRITE yuan.woman /home/gmf
+WRITE yuan.newyork /home
+WRITE yuan.newyork /aaa
+WRITE gmf.man /home/gmf/aaa
+CREATE yuan.woman /home/yuan
+yuan.woman rw
+.
+CREATE yuan.woman /home/feng/yuan
+yuan.woman rw
+.
+CREATE gmf.man /home/gmf/aaa
+.
+CREATE gmf.man /home/gmf/bbb
+*.man r
+.
+READ hao.man /home/gmf/bbb
+READ yuan.woman /home/gmf/bbb
+READ hao.man /home/gmf/bbb
+READ yuan.woman /home/gmf/bbb
+WRITE hao.man /home/gmf/bbb
+DELETE gmf.man /home/gmf/bbb
+CREATE gmf.man /home/gmf/bbb
+*.man -
+*.woman rw
+gmf.newyork rw
+.
+READ gmf.man /home/gmf/bbb
+READ gmf.newyork /home/gmf/bbb
+CREATE yuan.woman /home/gmf/bbb/fff
+.
+DELETE gmf.newyork /home/gmf/bbb/fff
+DELETE yuan.woman /home/gmf/bbb
+READ yuan.woman /home/gmf/bbb/fff
+ACL gmf.man /home/gmf/file
+yuan.* r
+gmf.man rw
+.
+READ yuan.newyork /home/gmf/file
+WRITE yuan.woman /home/gmf/file
+ACL gmf.man /home/file
+.
+ACL gmf.man /home/gmf/file
+gmf.man rw
+acfun.tv r
+.
+READ acfun.tv /home/gmf/file
+
+================================
+gmf.man /home/gmf
+gmf.newyork
+yuan.woman /home/gmf
+yuan.newyork /home/feng
+yuan.woman
+hao.man /home/hao
+gmf.man /home/gmf/file
+.
+READ gmf.man /home/gmf
+1	Y	READ gmf.man /home/gmf
+READ gmf.m /home/gmf
+2	X	READ gmf.m /home/gmf	ERROR: Group does not exists
+READ gmf.man /home/gmf/file
+3	Y	READ gmf.man /home/gmf/file
+WRITE yuan,w== /home/gmf
+7	X	WRITE yuan,w== /home/gmf	ERROR: Not a valid user.group: all character should be lowcase and contains only one period
+WRITE yuan.newyork /home/feng
+5	Y	WRITE yuan.newyork /home/feng
+WRITE yuan.woman /home/hao
+6	Y	WRITE yuan.woman /home/hao
+
+
+
+WRITE yuan.woman /home/hao
+WRITE yuan.woman /home/gmf
+WRITE yuan.newyork /home
+WRITE yuan.newyork /aaa
+WRITE gmf.man /home/gmf/aaa
+CREATE yuan.woman /home/yuan
+yuan.woman rw
+.
+CREATE yuan.woman /home/feng/yuan
+yuan.woman rw
+.
+CREATE gmf.man /home/gmf/aaa
+.
+CREATE gmf.man /home/gmf/bbb
+*.man r
+.
+READ hao.man /home/gmf/bbb
+READ yuan.woman /home/gmf/bbb
+
+3	Y	CREATE gmf.man /home/gmf/bbb
+READ hao.man /home/gmf/bbb
+4	Y	READ hao.man /home/gmf/bbb
+READ yuan.woman /home/gmf/bbb
+5	N	READ yuan.woman /home/gmf/bbb	NO_PERMISSION: No READ permission on the file
+WRITE hao.man /home/gmf/bbb
+6	N	WRITE hao.man /home/gmf/bbb	NO_PERMISSION: No WRITE permission on the file
+DELETE gmf.man /home/gmf/bbb
+7	Y	DELETE gmf.man /home/gmf/bbb
+CREATE gmf.man /home/gmf/bbb
+*.man -
+*.woman rw
+gmf.newyork rw
+.
+8	Y	CREATE gmf.man /home/gmf/bbb
+READ gmf.man /home/gmf/bbb
+9	N	READ gmf.man /home/gmf/bbb	NO_PERMISSION: No READ permission on the file
+READ gmf.newyork /home/gmf/bbb
+10	N	READ gmf.newyork /home/gmf/bbb	NO_PERMISSION: No READ permission on the file
+CREATE yuan.woman /home/gmf/bbb/fff
+.
+11	Y	CREATE yuan.woman /home/gmf/bbb/fff
+DELETE gmf.newyork /home/gmf/bbb/fff
+12	N	DELETE gmf.newyork /home/gmf/bbb/fff	NO_PERMISSION: No READ permssion on the path to the file
+DELETE yuan.woman /home/gmf/bbb
+13	Y	DELETE yuan.woman /home/gmf/bbb
+READ yuan.woman /home/gmf/bbb/fff
+14	X	READ yuan.woman /home/gmf/bbb/fff	ERROR: Failed to FIND the path to the file
+ACL gmf.man /home/gmf/file
+yuan.* r
+gmf.man rw
+.
+15	Y	ACL gmf.man /home/gmf/file
+READ yuan.newyork /home/gmf/file
+16	Y	READ yuan.newyork /home/gmf/file
+WRITE yuan.woman /home/gmf/file
+17	N	WRITE yuan.woman /home/gmf/file	NO_PERMISSION: No WRITE permission on the file
+ACL gmf.man /home/file
+.
+ACL gmf.man /home/gmf/file
+gmf.man rw
+acfun.tv r
+.
+READ acfun.tv /home/gmf/file

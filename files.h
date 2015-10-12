@@ -14,13 +14,18 @@
 #include <string>
 #include <utility>
 #include <vector>
-  /*
-    the permission uses int = {0, 1, 2, 3}, where each number coresponding to rw
-   permission
-    eg. 0 -> - , 1->w, 2->r, 3->rw
+/*
+  the permission uses int = {0, 1, 2, 3}, where each number coresponding to rw
+ permission
+  eg. 0 -> - , 1->w, 2->r, 3->rw
 
-   */
+ */
 typedef std::pair<std::string, int> acl_pair;
+inline bool operator==(const acl_pair &lhs, const acl_pair &rhs) {
+  if (lhs.first == rhs.first)
+    return true;
+  return false;
+}
 
 class ACLFile {
 public:
@@ -31,13 +36,15 @@ public:
    <user_group, permission>
    */
   std::string file_name;
-  std::map<std::string, ACLFile*> file_link;
+  std::map<std::string, ACLFile *> file_link;
   std::vector<acl_pair> file_permission;
   ACLFile(std::string name);
+  //  setting default_user_permission. called in user definition section
   ACLFile(std::string name, std::vector<std::string> default_user_permission);
-  ~ACLFile();
+  //  setting user_specified_permission. called in operation portion
+  ACLFile(std::string name, std::vector<acl_pair> specified_user_permission);
 
-  
+  ~ACLFile();
 };
 
 #endif /* defined(__ACL_evaluation__files__) */
